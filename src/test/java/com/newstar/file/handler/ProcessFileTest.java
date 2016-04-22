@@ -2,6 +2,7 @@ package com.newstar.file.handler;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +15,12 @@ public class ProcessFileTest {
 
 	@Before
 	public void setUp() throws Exception {
-		processFile = new ProcessFile();
+		this.processFile = new ProcessFile();
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		this.processFile = null;
 	}
 
 	@Test
@@ -26,9 +32,10 @@ public class ProcessFileTest {
 	public void testProcessFile_withError() {
 		try {
 			processFile.processInputFile("inavalidFile.txt");
-			fail("Has to file file processing");
+			fail("should get exception for file processing");
 		} catch (Exception e) {
 			assertTrue(e instanceof IllegalStateException);
+			assertTrue(e.getMessage().contains("Error occured while reading file"));
 		}
 	}
 

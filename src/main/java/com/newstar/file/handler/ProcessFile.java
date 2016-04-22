@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +13,10 @@ import com.newstar.file.dto.CategoryInfo;
 
 import static com.newstar.file.util.Helper.*;
 
+/**
+ * This class contains file processing logic
+ * 
+ */
 public class ProcessFile {
 
 	public static void main(String[] args) {
@@ -21,6 +24,12 @@ public class ProcessFile {
 		pf.processInputFile(FILE_NAME);
 	}
 
+	/**
+	 * Method responsible for reading, filtering and processing the file by satisfying the given set of rules.
+	 * Output content will be printed on console.
+	 * 
+	 * @param fName input file name whhich present at resource folder
+	 */
 	public void processInputFile(String fName) {
 
 		final Path filePath = Paths.get(PATH, fName);
