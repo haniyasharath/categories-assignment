@@ -14,25 +14,42 @@ import com.newstar.file.dto.CategoryInfo;
 import static com.newstar.file.util.Helper.*;
 
 /**
- * This class contains file processing logic
- * 
+ * <p>This class contains file processing logic.
+ * Program expects maximum two number of arguments </p>
+ * <ul>When two arguments passed then first argument considered as file name and second argument as path to the file.</ul>
+ * <ul>When only one argument has been passed then that argument will be taken as file name and path will be looked at project's resource folder.</ul>
+ * <ul>when no argument passed then default file name will be taken which present at project's resource folder.</ul>
  */
 public class ProcessFile {
 
 	public static void main(String[] args) {
 		ProcessFile pf = new ProcessFile();
-		pf.processInputFile(FILE_NAME);
+		switch (args.length) {
+		case 0:
+			pf.processInputFile(DEFAULT_FILE_NAME, PATH);
+			break;
+		case 1:
+			pf.processInputFile(args[0], PATH);
+			break;
+		case 2:
+			pf.processInputFile(args[0], args[1]);
+			break;
+		default:
+			throw new IllegalStateException("Error occured while reading arguments");
+		}
 	}
 
 	/**
 	 * Method responsible for reading, filtering and processing the file by satisfying the given set of rules.
 	 * Output content will be printed on console.
 	 * 
-	 * @param fName input file name whhich present at resource folder
+	 * @param fName input file name which present at given location fPath
+	 * @param fPath path to the resource file
+	 * @throws IllegalStateException when fails to locate and process the file
 	 */
-	public void processInputFile(String fName) {
+	public void processInputFile(String fName, String fPath) {
 
-		final Path filePath = Paths.get(PATH, fName);
+		final Path filePath = Paths.get(fPath, fName);
 
 		List<String> lines = null;
 		try {

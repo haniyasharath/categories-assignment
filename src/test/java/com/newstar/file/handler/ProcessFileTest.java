@@ -25,13 +25,13 @@ public class ProcessFileTest {
 
 	@Test
 	public void testProcessFile() {
-		processFile.processInputFile(Helper.FILE_NAME);
+		processFile.processInputFile(Helper.DEFAULT_FILE_NAME, Helper.PATH);
 	}
 	
 	@Test
 	public void testProcessFile_withError() {
 		try {
-			processFile.processInputFile("inavalidFile.txt");
+			processFile.processInputFile("inavalidFile.txt", Helper.PATH);
 			fail("should get exception for file processing");
 		} catch (Exception e) {
 			assertTrue(e instanceof IllegalStateException);

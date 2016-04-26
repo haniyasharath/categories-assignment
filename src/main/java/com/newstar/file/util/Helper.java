@@ -8,7 +8,7 @@ import com.newstar.file.dto.CategoryInfo;
 
 public class Helper {
 	public static final String PATH = "src/main/resources/inputFiles/";
-	public static final String FILE_NAME = "inputFile.txt";
+	public static final String DEFAULT_FILE_NAME = "inputFile.txt";
 	public static final String BLANK = " ";
 	public static final String NEW_LINE = "\n";
 	public static final String SPACES = "         ";
